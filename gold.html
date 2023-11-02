@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="gold.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="editor">
+            <div class="box">
+                <label for="html" class="label-html">HTML</label>
+                <textarea id="html" class="code" oninput="run()"></textarea>
+            </div>
+
+            <div class="box">
+                <label for="css" class="label-css">CSS</label>
+                <textarea id="css" class="code" oninput="run()"></textarea>
+            </div>
+
+            <div class="box">
+                <label for="js" class="label-js">JavaScript</label>
+                <textarea id="js" class="code" oninput="run()"></textarea>
+            </div>
+        </div>
+
+        <div class="editor">
+            <div class="box">
+
+                <label for="output" class="label-output">Output</label>
+                <div class="output-box">
+                    <iframe id="output" class="iframe"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function run() {
+            let htmlCode = document.getElementById("html").value;
+            let cssCode = document.getElementById("css").value;
+            let jsCode = document.getElementById("js").value;
+            let output = document.getElementById("output");
+
+            output.contentDocument.body.innerHTML = htmlCode + "<style>" + cssCode + "</style>";
+            output.contentWindow.eval(jsCode);
+        }
+    </script>
+</body>
+
+</html>
